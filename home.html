@@ -1,0 +1,111 @@
+<html>
+    <body>
+        <style>
+            html {<!--overflow-y:hidden; overflow-x:hidden;-->}
+            body {font-family:verdana; background-image:url("pic/bg3.jpg");}
+            #top {position:fixed; top:50%; left:50%; margin-top:-272; margin-left:-272; color:black; z-index:10}
+            #content {position:absolute; border-radius:8px; width:1200px; top:50%; left:50%; margin-top:-300px; margin-left:-600px; text-align:center; clear:both; z-index:5}
+            #end {position:absolute; text-align:center; padding-top:5px; padding-bottom:5px; color:white; width:100%; height:20px; bottom:0; left:0; background:rgba(192,192,192,0.7);}
+            .rainbow {
+                background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+                background-image: gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+                color:transparent;
+                -webkit-background-clip: text;
+                background-clip: text;
+            }
+        </style>
+        <title>
+            GUTEN TAG!
+        </title>
+        <div id="content" style="border:1px solid; background:white;">
+            <p style="padding-top:25px;">
+            <img src="pic/gt.png">
+            <p style="padding-top:25px; padding-right:0px;">
+            <b>Online Analytical Processing</b></p>
+            <form name="mahjong" action="results.php" method="post">
+                <p style="padding-left:10px; padding-right:10px; text-align:left;">
+                <b>About</b></p>
+                <p style="padding-left:30px; padding-right:10px; text-align:left;">
+                <input type="checkbox" name='sex' value='s'>Sex <select name="wse">
+                    <option value='n'>NONE</option>
+                    <option value='m'>MALE</option>
+                    <option value='f'>FEMALE</option>
+                    </select><br><br>
+                <input type="checkbox" name='age' value='s'>Date of Birth <input type='text' name='ag1' value='-1/-1/-1' style='text-align:center; width:100px;'> to <input type='text' name='ag2' value='-1/-1/-1' style='text-align:center; width:100px;'><br><br>
+                <input type="checkbox" name='edu' value='s'>Education <select name="wed">
+                    <option value='n'>NONE</option>
+                    <option value='i'>IN EDUCATION </option>
+                    <option value='o'>OUT OF EDUCATION</option>
+                    </select><br><br>
+                <input type="checkbox" name='job' value='s'>Job <select name="wjo">
+                    <option value='n'>NONE</option>
+                    <option value='i'>IN JOB </option>
+                    <option value='o'>NO JOB</option>
+                    </select><br><br>
+                <input type="checkbox" name='lit' value='s'>Literacy <select name="wli">
+                    <option value='n'>NONE</option>
+                    <option value='i'>LITERATE</option>
+                    <option value='o'>ILLITERATE</option>
+                    </select><br><br></p>
+                <p style="padding-left:10px; padding-right:10px; text-align:left;">
+                <b>Educational Attainment</b></p>
+                <p style="padding-left:30px; padding-right:10px; text-align:left;">
+                <input type="checkbox" name='grd' value='s'>Grade <input type='text' name='gr1' value='-1' style='text-align:center; width:25px;'> to <input type='text' name='gr2' value='-1' style='text-align:center; width:25px;'><br><br>
+                <input type="checkbox" name='sch' value='s'>School Type <select name="wsc">
+                    <option value='n'>NONE</option>
+                    <option value='i'>PUBLIC</option>
+                    <option value='o'>PRIVATE</option>
+                    </select><br><br>
+                <input type="checkbox" name='yno' value='s'>Reason for not going to school (if applicable) <select name="wyn">
+                    <option value='n'>NONE</option>
+                    <option value='1'>Schools are very far</option>
+                    <option value='2'>No school within the brgy</option>
+                    <option value='3'>No regular transportation</option>
+                    <option value='4'>High cost of education</option>
+                    <option value='5'>Illness/Disability</option>
+                    <option value='6'>Housekeeping/taking care of siblings</option>
+                    <option value='7'>Marriage</option>
+                    <option value='8'>Employment/looking for work</option>
+                    <option value='9'>Lack of personal interest</option>
+                    <option value='10'>Cannot cope with school work</option>
+                    <option value='11'>Finished schooling</option>
+                    <option value='12'>Problem with school record</option>
+                    <option value='13'>Problem with birth certificate</option>
+                    <option value='14'>Too young to go to school</option>
+                    <option value='15'>Others, specify</option>
+                    </select><br><br>
+                <input type="checkbox" name='yot' value='s'>Other reasons (if applicable)<br><br>
+                <input type="checkbox" name='eat' value='s'>Attainment <input type='text' name='ea1' value='-1' style='text-align:center; width:25px;'> to <input type='text' name='ea2' value='-1' style='text-align:center; width:25px;'><br><br></p>
+                <p style="padding-left:10px; padding-right:10px; text-align:left;">
+                <b>Voter's ID</b></p>
+                <p style="padding-left:30px; padding-right:10px; text-align:left;">
+                <input type="checkbox" name='reg' value='s'>Registered Voters ID? <select name="wre">
+                    <option value='n'>NONE</option>
+                    <option value='i'>YES</option>
+                    <option value='o'>NO</option>
+                    </select><br><br>
+                <input type="checkbox" name='las' value='s'>Voted Last Election? <select name="wla">
+                    <option value='n'>NONE</option>
+                    <option value='i'>YES</option>
+                    <option value='o'>NO</option>
+                    <option value='p'>DON'T KNOW</option>
+                    </select><br><br>
+                <p style="padding-left:30px; padding-right:10px; text-align:left;">
+                
+                Show by...
+                <select name="query">
+                    <option value='n'>NONE</option>
+                    <option value='r'>ROLL-UP</option>
+                    <option value='dr'>DRILL-DOWN</option>
+                    <option value='s'>SLICE</option>
+                    <option value='di'>DICE</option>
+                </select>
+                <br><br>
+                </p>
+                
+                <input type="submit">
+                <!--<a style="color:gray;" href="terms.html"><i>Don't have an account? Click here!</i></a>-->
+            </form>
+        </div>
+    </body>
+</html>
