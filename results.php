@@ -23,7 +23,7 @@
         <div id="content" style="border:1px solid; background:white;">
             <?php
                 //Don't forget to change the table!
-                $con = mysqli_connect("localhost","root","","marinduque");
+                $con = mysqli_connect("25.36.228.32","root","","marinduque");
                 session_start();
                 
                 //Tables used
