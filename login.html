@@ -1,0 +1,50 @@
+
+<html>
+ <body>
+  <style>
+   html {<!--overflow-y:hidden; overflow-x:hidden;-->}
+   body {font-family:verdana; background-image:url("pic/bg3.jpg");}
+   #top {position:fixed; top:50%; left:50%; margin-top:-272; margin-left:-272; color:black; z-index:10}
+   #content {position:absolute; border-radius:8px; width:1200px; top:50%; left:50%; margin-top:-300px; margin-left:-600px; text-align:center; clear:both; z-index:5}
+   #end {position:absolute; text-align:center; padding-top:5px; padding-bottom:5px; color:white; width:100%; height:20px; bottom:0; left:0; background:rgba(192,192,192,0.7);}
+   .rainbow {
+    background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+    background-image: gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+    color:transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+   }
+  </style>
+  <title>
+   GUTEN TAG! Databases
+  </title>
+  <div id="content" style="border:1px solid; background:white;">
+   <p style="padding-top:25px;">
+   <img src="pic/gt.png">
+   <p style="padding-top:25px; padding-right:0px;">
+   <b>!GAT NETUG</b></p>
+   <form name="mahjong" action="home.php" method="post">
+    <p style="padding-left:10px; padding-right:10px; text-align:left;">
+    <b>Databases:</b></p>
+    <p style="padding-left:30px; padding-right:10px; text-align:left;">
+    <input type="checkbox" name='mar' value='y'> <i>Marinduque</i><br><br>
+    IP Address: <input style="padding-left:5px; height:25px;" name="im" type="text" placeholder="localhost"><br>
+    Username: <input style="padding-left:5px; height:25px;" name="um" type="text" placeholder="root"><br>
+    Password: <input style="padding-left:5px; height:25px;" name="pm" type="text" placeholder="password"><br>
+    <br><br>
+    <input type="checkbox" name='pal' value='y'> <i>Palawan</i><br><br>
+    IP Address: <input style="padding-left:5px; height:25px;" name="ip" type="text" placeholder="localhost"><br>
+    Username: <input style="padding-left:5px; height:25px;" name="up" type="text" placeholder="root"><br>
+    Password: <input style="padding-left:5px; height:25px;" name="pp" type="text" placeholder="password"><br>
+    <br><br>
+    <input type="checkbox" name='com' value='y'> <i>Combined</i><br><br>
+    IP Address: <input style="padding-left:5px; height:25px;" name="ic" type="text" placeholder="localhost"><br>
+    Username: <input style="padding-left:5px; height:25px;" name="uc" type="text" placeholder="root"><br>
+    Password: <input style="padding-left:5px; height:25px;" name="pc" type="text" placeholder="password"><br>
+    </p>
+    <input type="submit">
+    <!--<a style="color:gray;" href="terms.html"><i>Don't have an account? Click here!</i></a>-->
+   </form>
+  </div>
+ </body>
+</html>
