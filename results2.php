@@ -38,6 +38,15 @@
       $con = $com;
     }
       print_r($_SESSION);
+
+      if(isset($_POST['isol'])){
+        switch($_POST['isol']){
+          case 's': mysqli_query($con, "SET TRANSACTION LEVEL SERIALIZABLE") or die(mysqli_error($con)); break;
+          case 'rr': mysqli_query($con, "SET TRANSACTION LEVEL REPEATABLE READ") or die(mysqli_error($con)); break;
+          case 'rc': mysqli_query($con, "SET TRANSACTION LEVEL READ COMMITTED") or die(mysqli_error($con)); break;
+          case 'ru': mysqli_query($con, "SET TRANSACTION LEVEL READ UNCOMMITTED") or die(mysqli_error($con)); break;
+        }
+      }
     
     //detect type of query
     //v - view results
@@ -89,12 +98,24 @@
           echo '</table>';
           mysqli_close($con);
         }; break;
-        case "cp1": mysqli_query($con, "UPDATE hpq_mem SET educind = ".$_POST['v1']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15") or die("Unable to update Palawan".die(mysqli_error($con))); break;
-        case "cm1": mysqli_query($con, "UPDATE hpq_mem SET educind =".$_POST['v1']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1") or die("Unable to update Marinduque".die(mysqli_error($con))); break;
-        case "cp2": mysqli_query($con, "UPDATE hpq_mem SET jobind = ".$_POST['v1']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15") or die("Unable to update Palawan".die(mysqli_error($con))); break;
-        case "cm2": mysqli_query($con, "UPDATE hpq_mem SET jobind =".$_POST['v1']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1") or die("Unable to update Marinduque".die(mysqli_error($con))); break;
-        case "cp3": mysqli_query($con, "UPDATE hpq_mem SET regvotind = ".$_POST['v1']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15") or die("Unable to update Palawan".die(mysqli_error($con))); break;
-        case "cm3": mysqli_query($con, "UPDATE hpq_mem SET regvotind =".$_POST['v1']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1") or die("Unable to update Marinduque".die(mysqli_error($con))); break;
+        case "cp1": {
+          mysqli_query($con, "UPDATE hpq_mem SET educind = ".$_POST['v1']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15") or die("Unable to update Palawan".die(mysqli_error($con))); 
+        }; break;
+        case "cm1": {
+          mysqli_query($con, "UPDATE hpq_mem SET educind =".$_POST['v1']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1") or die("Unable to update Marinduque".die(mysqli_error($con)));
+        }; break;
+        case "cp2": {
+          mysqli_query($con, "UPDATE hpq_mem SET jobind = ".$_POST['v1']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15") or die("Unable to update Palawan".die(mysqli_error($con))); 
+        }; break;
+        case "cm2": {
+          mysqli_query($con, "UPDATE hpq_mem SET jobind =".$_POST['v1']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1") or die("Unable to update Marinduque".die(mysqli_error($con)));
+        }; break;
+        case "cp3": {
+          mysqli_query($con, "UPDATE hpq_mem SET regvotind = ".$_POST['v1']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15") or die("Unable to update Palawan".die(mysqli_error($con)));
+        }; break;
+        case "cm3": {
+          mysqli_query($con, "UPDATE hpq_mem SET regvotind =".$_POST['v1']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1") or die("Unable to update Marinduque".die(mysqli_error($con)));
+        }; break;
       }
       
     // } catch{
