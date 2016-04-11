@@ -55,10 +55,19 @@
     <?php
     print_r($_POST);
     ?>
-    <p style="padding-left:10px; padding-right:10px; text-align:left;">
-    <b>Queries:</b></p>
+    <!-- <p style="padding-left:10px; padding-right:10px; text-align:left;">
+    <b>Queries:</b></p> -->
     <p style="padding-left:30px; padding-right:10px; text-align:left;">
-    <input style="padding-left:5px; height:25px;" name="queries" type="submit" value="Submit Query 1">    <b>1.</b> Number of community members that are registered voters but are not studying and are unemployed <br><br>
+      ISOLATION LEVEL:
+    <select name="isol">
+      <option value='n'>AS IS</option>
+      <option value='s'>SERIALIZABLE</option>
+      <option value='rr'>REPEATABLE READ</option>
+      <option value='rc'>READ COMMITTED</option>
+      <option value='ru'>READ UNCOMMITTED</option>
+    </select><br><br>
+    <input style="padding-left:5px; height:25px;" name="queries" type="submit" value="Submit Query 1">Number of community members that are registered voters but are not studying and are unemployed
+    <br><br>
     <!-- <input style="padding-left:5px; height:25px;" name="queries" type="submit" value="Submit Query 2">    <b>2.</b> Number of community members that are working students and are minor <br><br>
     <input style="padding-left:5px; height:25px;" name="queries" type="submit" value="Submit Query 3">    <b>3.</b> Number of deaths per municipality that were caused by common diseases <br><br>
     Show by...
@@ -79,9 +88,21 @@
     <input style="padding-left:5px; height:25px;" name="queries" type="submit" value="Submit Query 5">  <b>5.</b> Average number of crops harvested by people who work in the crop industry per municipality for the last 12 months <br><br>
     <input style="adding-left:5px; height:25px;" name="queries" type="submit" value="Submit Query 6">  <b>6.</b> Average number of seafood fished from the sea per municipality from the people in the crop industry for the last 12 months <br><br>
     <input style="padding-left:5px; height:25px;" name="queries" type="submit" value="Submit Query 7">  <b>7.</b> Income of the fishing, crop, and livestock industry per municipality with the average yield of crops and fish for the last 12 months <br><br> -->
-    <input style="padding-left:5px; height:25px;" name="edit" type="submit" value="Edit User 1"><b>1.</b>Edit eduind<br><br>
-    <input style="padding-left:5px; height:25px;" name="edit" type="submit" value="Edit User 2"><b>2.</b>Edit jobind<br><br>
-    <input style="padding-left:5px; height:25px;" name="edit" type="submit" value="Edit User 3"><b>3.</b>Edit regvotind<br><br>
+    <input style="padding-left:5px; height:25px;" name="edit" type="submit" value="Edit User Info 1"><b>1.</b>Edit eduind:
+    <select name="v1">
+      <option value="1">1</option>
+      <option value="2">2</option>
+    </select><br><br>
+    <input style="padding-left:5px; height:25px;" name="edit" type="submit" value="Edit User Info 2"><b>2.</b>Edit jobind: 
+    <select name="v2">
+      <option value="1">1</option>
+      <option value="2">2</option>
+    </select><br><br>
+    <input style="padding-left:5px; height:25px;" name="edit" type="submit" value="Edit User Info 3"><b>3.</b>Edit regvotind: 
+    <select name="v3">
+      <option value="1">1</option>
+      <option value="2">2</option>
+    </select><br><br>
      </p>
     <!--<a style="color:gray;" href="terms.html"><i>Don't have an account? Click here!</i></a>-->
    </form>
