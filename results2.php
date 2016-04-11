@@ -33,14 +33,14 @@
       $pal = mysqli_connect($_SESSION["ip"],$_SESSION["up"],$_SESSION["pp"],"palawan_info");
        $con = $pal;
     } else if ($_SESSION["com"] == 'y'){
-      $com = mysqli_connect($_SESSION["ic"],$_SESSION["uc"],$_SESSION["pc"],"combined",true);
+      $com = mysqli_connect($_SESSION["ic"],$_SESSION["uc"],$_SESSION["pc"],"combined");
       $con = $com;
     }
       print_r($_SESSION);
     
     //Different queries
     if ($_POST['queries'] == 'Submit Query 1') {
-     $sql = "SELECT COUNT(DISTINCT `main.id`) FROM hpq_mem
+     $sql = "SELECT COUNT(DISTINCT `id`) FROM hpq_mem
        WHERE educind = 2 AND jobind = 2 AND regvotind = 1;";
     }
     
@@ -50,7 +50,7 @@
     $exec = microtime(true)-$exec;
     echo 'Execution Time: ' . ($exec * 1000) . ' ms';
     
-    $result = mysqli_query($con, $sql) or die(mysqli_error());
+    $result = mysqli_query($con, $sql) or die(mysqli_error($con));
     
     //Print the column names
     echo '<table>';
