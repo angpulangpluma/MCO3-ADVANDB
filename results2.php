@@ -25,7 +25,8 @@
    <?php
     //Don't forget to change the table!
     session_start();
-    
+
+    //detect which user is initiating transaction    
     if ($_SESSION["mar"] == 'y'){
       $mar = mysqli_connect($_SESSION["im"],$_SESSION["um"],$_SESSION["pm"],"marinduque_info");
       $con = $mar;
@@ -38,25 +39,26 @@
     }
       print_r($_SESSION);
     
-    //Different queries
+    //detect type of query
+    //v - view results
     if ( isset($_POST['queries']) &&$_POST['queries'] == 'Submit Query 1') {
      $sql = "v";
        // mysqli_begin_transaction($con, MYSQLI_TRANS_START_READ_WRITE);
-    } else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 1' && $_SESSION['mar']=='y' && isset($_POST['v1'])){
+    } else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 1' && $_SESSION['mar']=='y' && isset($_POST['v1'])){ //cm1 - edit eduind at marinduque
       $sql = "cm1";
-    } else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 1' && $_SESSION['pal']=='y' && isset($_POST['v1'])){
+    } else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 1' && $_SESSION['pal']=='y' && isset($_POST['v1'])){ //cp1 - edit eduind at palawan
       $sql = "cp1";
-    } else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 2' && $_SESSION['mar']=='y' && isset($_POST['v2'])){
+    } else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 2' && $_SESSION['mar']=='y' && isset($_POST['v2'])){ //cm2 - edit jobind at marinduque
       $sql ="cm2";
-    }  else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 2' && $_SESSION['pal']=='y' && isset($_POST['v2'])){
+    }  else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 2' && $_SESSION['pal']=='y' && isset($_POST['v2'])){  //cp2 - edit jobind at palawan
       $sql ="cp2";
-    }  else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 3' && $_SESSION['mar']=='y' && isset($_POST['v3'])){
+    }  else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 3' && $_SESSION['mar']=='y' && isset($_POST['v3'])){ //cm3 - edit regvotind at marinduque
       $sql ="cm3";
-    }  else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 3' && $_SESSION['pal']=='y'){
+    }  else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 3' && $_SESSION['pal']=='y'){ //cp3 - edit regvotind at palawan
       $sql ="cp3";
     }
     
-    //Execution time in milliseconds
+    //execute queries!
     // try{
       $exec = microtime(true);
       switch($sql){
