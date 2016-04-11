@@ -26,11 +26,17 @@
     //Don't forget to change the table!
     session_start();
     
-    if ($_SESSION["mar"] == 'y') $mar = mysqli_connect($_SESSION["im"],$_SESSION["um"],$_SESSION["pm"],"marinduque_info") 
-      or die("Unable to connect to Marinduque Database");
-    if ($_SESSION["pal"] == 'y') $pal = mysqli_connect($_SESSION["ip"],$_SESSION["up"],$_SESSION["pp"],"palawan_info") or die("Unable to connect to Palawan Database");
+    if ($_SESSION["mar"] == 'y'){
+      $mar = mysqli_connect($_SESSION["im"],$_SESSION["um"],$_SESSION["pm"],"marinduque_info");
+      $con = $mar;
+    } else if ($_SESSION["pal"] == 'y'){
+      $pal = mysqli_connect($_SESSION["ip"],$_SESSION["up"],$_SESSION["pp"],"palawan_info");
+       $con = $pal;
+    } else if ($_SESSION["com"] == 'y'){
+      $com = mysqli_connect($_SESSION["ic"],$_SESSION["uc"],$_SESSION["pc"],"combined",true);
+      $con = $com;
+    }
       print_r($_SESSION);
-    if ($_SESSION["com"] == 'y') $com = mysqli_connect($_SESSION["ic"],$_SESSION["uc"],$_SESSION["pc"],"combined",true) or die("Unable to connect to Combined Database");
     
     //Different queries
     if ($_POST['queries'] == 'Submit Query 1') {
