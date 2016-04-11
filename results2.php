@@ -40,56 +40,61 @@
     
     //Different queries
     if ( isset($_POST['queries']) &&$_POST['queries'] == 'Submit Query 1') {
-     $sql = "SELECT COUNT(DISTINCT `id`) FROM hpq_mem
-       WHERE educind = 2 AND jobind = 2 AND regvotind = 1;";
+     $sql = "v";
        // mysqli_begin_transaction($con, MYSQLI_TRANS_START_READ_WRITE);
-    } else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 1' && ($_SESSION['mar']=='y' || $_SESSION['com']=='y') && isset($_POST['v1'])){
-      $sql ="UPDATE hpq_mem SET educind =".$_POST['v1']."
-        WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1";
+    } else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 1' && $_SESSION['mar']=='y' && isset($_POST['v1'])){
+      $sql = "cm1";
     } else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 1' && $_SESSION['pal']=='y' && isset($_POST['v1'])){
-      $sql ="UPDATE hpq_mem SET educind = ".$_POST['v1']."
-        WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
-    }  else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 2' && ($_SESSION['mar']=='y' || $_SESSION['com']=='y') && isset($_POST['v2'])){
-      $sql ="UPDATE hpq_mem SET educind = ".$_POST['v2']."
-        WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1";
+      $sql = "cp1";
+    } else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 2' && $_SESSION['mar']=='y' && isset($_POST['v2'])){
+      $sql ="cm2";
     }  else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 2' && $_SESSION['pal']=='y' && isset($_POST['v2'])){
-      $sql ="UPDATE hpq_mem SET educind = ".$_POST['v2']."
-        WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
-    }  else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 3' && ($_SESSION['mar']=='y' || $_SESSION['com']=='y') && isset($_POST['v3'])){
-      $sql ="UPDATE hpq_mem SET regvotind = ".$_POST['v3']."
-        WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1";
+      $sql ="cp2";
+    }  else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 3' && $_SESSION['mar']=='y' && isset($_POST['v3'])){
+      $sql ="cm3";
     }  else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 3' && $_SESSION['pal']=='y'){
-      $sql ="UPDATE hpq_mem SET regvotind = ".$_POST['v3']."
-        WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
+      $sql ="cp3";
     }
     
     //Execution time in milliseconds
     // try{
       $exec = microtime(true);
-      mysqli_query($con, $sql);
-      $exec = microtime(true)-$exec;
-      echo 'Execution Time: ' . ($exec * 1000) . ' ms';
-      
-      $result = mysqli_query($con, $sql) or die(mysqli_error($con));
-      
-      //Print the column names
-      echo '<table>';
-      echo '<tr>';
-      while ($field_info = mysqli_fetch_field($result)) {
-       echo '<td>' . $field_info->name . '</td>';
+      switch($sql){
+        case "v": {
+          $result = mysqli_query($con, "SELECT COUNT(DISTINCT `main.id`) FROM hpq_mem
+            WHERE educind = 2 AND jobind = 2 AND regvotind = 1;") or die(mysqli_error($con));
+          $exec = microtime(true)-$exec;
+          echo 'Execution Time: ' . ($exec * 1000) . ' ms';
+          
+           mysqli_query($con, $sql);
+          
+          //Print the column names
+          echo '<table>';
+          echo '<tr>';
+          while ($field_info = mysqli_fetch_field($result)) {
+           echo '<td>' . $field_info->name . '</td>';
+          }
+          echo '</tr>';
+          
+          //Print the data
+          while($row = mysqli_fetch_row($result)) {
+           echo "<tr>";
+           foreach($row as $value) {
+            echo "<td>" . $value . "</td>";
+           }
+           echo "</tr>";
+          }
+          echo '</table>';
+          mysqli_close($con);
+        }; break;
+        case "cp1": mysqli_query($con, "UPDATE hpq_mem SET educind = ".$_POST['v1']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15") or die("Unable to update Palawan".die(mysqli_error($con))); break;
+        case "cm1": mysqli_query($con, "UPDATE hpq_mem SET educind =".$_POST['v1']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1") or die("Unable to update Marinduque".die(mysqli_error($con))); break;
+        case "cp2": mysqli_query($con, "UPDATE hpq_mem SET jobind = ".$_POST['v1']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15") or die("Unable to update Palawan".die(mysqli_error($con))); break;
+        case "cm2": mysqli_query($con, "UPDATE hpq_mem SET jobind =".$_POST['v1']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1") or die("Unable to update Marinduque".die(mysqli_error($con))); break;
+        case "cp3": mysqli_query($con, "UPDATE hpq_mem SET regvotind = ".$_POST['v1']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15") or die("Unable to update Palawan".die(mysqli_error($con))); break;
+        case "cm3": mysqli_query($con, "UPDATE hpq_mem SET regvotind =".$_POST['v1']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1") or die("Unable to update Marinduque".die(mysqli_error($con))); break;
       }
-      echo '</tr>';
       
-      //Print the data
-      while($row = mysqli_fetch_row($result)) {
-       echo "<tr>";
-       foreach($row as $value) {
-        echo "<td>" . $value . "</td>";
-       }
-       echo "</tr>";
-      }
-      echo '</table>';
-      mysqli_close($con);
     // } catch{
 
     // }
