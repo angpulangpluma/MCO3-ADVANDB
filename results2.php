@@ -45,6 +45,7 @@
           case 'rr': mysqli_query($con, "SET TRANSACTION LEVEL REPEATABLE READ") or die(mysqli_error($con)); break;
           case 'rc': mysqli_query($con, "SET TRANSACTION LEVEL READ COMMITTED") or die(mysqli_error($con)); break;
           case 'ru': mysqli_query($con, "SET TRANSACTION LEVEL READ UNCOMMITTED") or die(mysqli_error($con)); break;
+          case 'n': break;
         }
       }
     
