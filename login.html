@@ -52,55 +52,38 @@
  </body>
  <script type="text/javascript">
   $(document).ready(function(){
-    var mar = false;
-    var pal = false;
-    var com = false;
     $('#mar').click(function(){
       if($('#mar').is(':checked')){
-        mar = true;
-        console.log("mar");
         $('#im').attr('required',true);
         $('#um').attr('required',true);
       } else{
-        mar = false;
-        console.log("no mar");
         $('#im').attr('required',false);
         $('#um').attr('required',false);
       }
     });
     $('#pal').click(function(){
       if($('#pal').is(':checked')){
-        pal = true;
-        console.log("pal");
         $('#ip').attr('required',true);
         $('#up').attr('required',true);
       } else{
-        pal = false;
-        console.log("no pal");
         $('#ip').attr('required',false);
         $('#up').attr('required',false);
       }
     });
     $('#com').click(function(){
       if($('#com').is(':checked')){
-        com = true;
-        console.log("com");
         $('#ic').attr('required',true);
         $('#uc').attr('required',true);
       } else{
-        com = false;
-        console.log("no com");
         $('#ic').attr('required',false);
         $('#uc').attr('required',false);
       }
     });
 
     function confirm_update(){
-      if($('#mar').is(':checked')&&$('#im').value!=""&&$('#um').value!=""&&$('#pm').value!=""){
-        return true;
-      } else if($('#pal').is(':checked')&&($('#ip').value!="")&&($('#up').value!="")&&($('#pp').value!="")){
-        return true;
-      } else if($('#com').is(':checked')&&($('#ic').value!="")&&($('#uc').value!="")&&($('#pc').value!="")){
+      if($('#mar').is(':checked') || 
+          $('#pal').is(':checked') ||
+          $('#com').is(':checked')){
         alert("Logging in!");
       } else return false;
     }
