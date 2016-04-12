@@ -34,12 +34,10 @@
       $mar = mysqli_connect($_SESSION["im"],$_SESSION["um"],$_SESSION["pm"],"marinduque_info");
       $paldetect = true;
       $con1 = $mar;
-      $con2 = $mar;
     } else if ($_SESSION["pal"] == 'y'){
       $pal = mysqli_connect($_SESSION["ip"],$_SESSION["up"],$_SESSION["pp"],"palawan_info");
        $mardetect = true;
        $con1 = $pal;
-       $con2 = $pal;
     } else if ($_SESSION["com"] == 'y'){
       $com = mysqli_connect($_SESSION["ic"],$_SESSION["uc"],$_SESSION["pc"],"combined");
       $comdetect = true;
@@ -48,7 +46,6 @@
       else {
         $existcon = false;
         $con1 = $com; 
-        $con2 = $com;
       }
     }
 
@@ -112,6 +109,8 @@
       try{
           //read write, if you want to read only replace it with READ_ONLY
           mysqli_begin_transaction($con1, MYSQLI_TRANS_START_READ_WRITE);
+          if(($paldetect===true || $mardetect===true)&&$comdetect===true)
+            mysqli_begin_transaction($con2, MYSQLI_TRANS_START_READ_WRITE);
 
           if($_POST['isol']!='n'){
             $db1query = mysqli_query($con1, $isolevel);
@@ -127,7 +126,7 @@
 
           if ($sql==='v'){
             //Print the column names
-            echo '<table>';
+            echo '<table border="1">';
             echo '<tr>';
             while ($field_info = mysqli_fetch_field($db1query)) {
              echo '<td>' . $field_info->name . '</td>';
