@@ -53,7 +53,7 @@
    <b>!GAT NETUG</b></p>
    <form name="mahjong" action="results2.php" method="post">
     <?php
-    print_r($_POST);
+    // print_r($_POST);
     ?>
     <!-- <p style="padding-left:10px; padding-right:10px; text-align:left;">
     <b>Queries:</b></p> -->

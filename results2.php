@@ -104,7 +104,7 @@
          
       }
 
-      print_r($_SESSION);
+      // print_r($_SESSION);
 
       try{
           //read write, if you want to read only replace it with READ_ONLY
