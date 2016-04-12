@@ -153,9 +153,11 @@
 
       } catch (Exception $e){
         //rollback
+        echo "No changes have been made due to loss of connection between the communicating databases";
         mysqli_rollback($db1query);
         if(($paldetect===true || $mardetect===true)&&$comdetect===true)
           mysqli_rollback($db2query);
+        exit;
       }
 
    ?>

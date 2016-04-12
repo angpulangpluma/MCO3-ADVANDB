@@ -1,5 +1,8 @@
 
 <html>
+  <head>
+    <script type="text/javascript" src="jquery-1.11.0.js"></script>
+  </head>
  <body>
   <style>
    html {<!--overflow-y:hidden; overflow-x:hidden;-->}
@@ -23,28 +26,69 @@
    <img src="pic/gt.png">
    <p style="padding-top:25px; padding-right:0px;">
    <b>!GAT NETUG</b></p>
-   <form name="mahjong" action="home.php" method="post">
+   <form name="mahjong" action="home.php" method="post" onsubmit="return confirm_update()">
     <p style="padding-left:10px; padding-right:10px; text-align:left;">
     <b>Databases:</b></p>
     <p style="padding-left:30px; padding-right:10px; text-align:left;">
-    <input type="checkbox" name='mar' value='y'> <i>Marinduque</i><br><br>
-    IP Address: <input style="padding-left:5px; height:25px;" name="im" type="text" placeholder="localhost"><br>
-    Username: <input style="padding-left:5px; height:25px;" name="um" type="text" placeholder="root"><br>
-    Password: <input style="padding-left:5px; height:25px;" name="pm" type="text" placeholder="password"><br>
+    <input type="checkbox" name='mar' value='y' id="mar"> <i>Marinduque</i><br><br>
+    IP Address: <input style="padding-left:5px; height:25px;" name="im" type="text" placeholder="localhost" id="im"><br>
+    Username: <input style="padding-left:5px; height:25px;" name="um" type="text" placeholder="root" id="um"><br>
+    Password: <input style="padding-left:5px; height:25px;" name="pm" type="text" placeholder="password" id="pm"><br>
     <br><br>
-    <input type="checkbox" name='pal' value='y'> <i>Palawan</i><br><br>
-    IP Address: <input style="padding-left:5px; height:25px;" name="ip" type="text" placeholder="localhost"><br>
-    Username: <input style="padding-left:5px; height:25px;" name="up" type="text" placeholder="root"><br>
-    Password: <input style="padding-left:5px; height:25px;" name="pp" type="text" placeholder="password"><br>
+    <input type="checkbox" name='pal' value='y' id="pal"> <i>Palawan</i><br><br>
+    IP Address: <input style="padding-left:5px; height:25px;" name="ip" type="text" placeholder="localhost" id="ip"><br>
+    Username: <input style="padding-left:5px; height:25px;" name="up" type="text" placeholder="root"id="up"><br>
+    Password: <input style="padding-left:5px; height:25px;" name="pp" type="text" placeholder="password" id="pp"><br>
     <br><br>
-    <input type="checkbox" name='com' value='y'> <i>Combined</i><br><br>
-    IP Address: <input style="padding-left:5px; height:25px;" name="ic" type="text" placeholder="localhost"><br>
-    Username: <input style="padding-left:5px; height:25px;" name="uc" type="text" placeholder="root"><br>
-    Password: <input style="padding-left:5px; height:25px;" name="pc" type="text" placeholder="password"><br>
+    <input type="checkbox" name='com' value='y' id="com"> <i>Combined</i><br><br>
+    IP Address: <input style="padding-left:5px; height:25px;" name="ic" type="text" placeholder="localhost" id="ic"><br>
+    Username: <input style="padding-left:5px; height:25px;" name="uc" type="text" placeholder="root" id="uc"><br>
+    Password: <input style="padding-left:5px; height:25px;" name="pc" type="text" placeholder="password" id="pc"><br>
     </p>
     <input type="submit">
     <!--<a style="color:gray;" href="terms.html"><i>Don't have an account? Click here!</i></a>-->
    </form>
   </div>
  </body>
+ <script type="text/javascript">
+  $(document).ready(function(){
+    $('#mar').click(function(){
+      if($('#mar').is(':checked')){
+        $('#im').attr('required',true);
+        $('#um').attr('required',true);
+      } else{
+        $('#im').attr('required',false);
+        $('#um').attr('required',false);
+      }
+    });
+    $('#pal').click(function(){
+      if($('#pal').is(':checked')){
+        $('#ip').attr('required',true);
+        $('#up').attr('required',true);
+      } else{
+        $('#ip').attr('required',false);
+        $('#up').attr('required',false);
+      }
+    });
+    $('#com').click(function(){
+      if($('#com').is(':checked')){
+        $('#ic').attr('required',true);
+        $('#uc').attr('required',true);
+      } else{
+        $('#ic').attr('required',false);
+        $('#uc').attr('required',false);
+      }
+    });
+
+    function confirm_update(){
+      if($('#mar').is(':checked') || 
+          $('#pal').is(':checked') ||
+          $('#com').is(':checked')){
+        alert("Logging in!");
+      } else return false;
+    }
+
+
+  });
+ </script>
 </html>
