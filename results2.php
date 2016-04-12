@@ -1,4 +1,5 @@
 
+
 <html>
  <head>
   <title>
@@ -31,14 +32,29 @@
     $comdetect = false;
     //detect which user is initiating transaction    
     if ($_SESSION["mar"] == 'y'){
+      $addr = gethostbyname($_SESSION["im"]."/MCO3-ADVANDB/home.php");
+      $client = stream_socket_client("tcp://$addr:80", $errno, $errorMessage);
+      if($client===false){
+        throw new UnexpectedValueException("Failed to connect: $errorMessage");
+      }
       $mar = mysqli_connect($_SESSION["im"],$_SESSION["um"],$_SESSION["pm"],"marinduque_info");
       $paldetect = true;
       $con1 = $mar;
     } else if ($_SESSION["pal"] == 'y'){
+      $addr = gethostbyname($_SESSION["ip"]."/MCO3-ADVANDB/home.php");
+      $client = stream_socket_client("tcp://$addr:80", $errno, $errorMessage);
+      if($client===false){
+        throw new UnexpectedValueException("Failed to connect: $errorMessage");
+      }
       $pal = mysqli_connect($_SESSION["ip"],$_SESSION["up"],$_SESSION["pp"],"palawan_info");
        $mardetect = true;
        $con1 = $pal;
     } else if ($_SESSION["com"] == 'y'){
+      $addr = gethostbyname($_SESSION["ic"]."/MCO3-ADVANDB/home.php");
+      $client = stream_socket_client("tcp://$addr:80", $errno, $errorMessage);
+      if($client===false){
+        throw new UnexpectedValueException("Failed to connect: $errorMessage");
+      }
       $com = mysqli_connect($_SESSION["ic"],$_SESSION["uc"],$_SESSION["pc"],"combined");
       $comdetect = true;
       if($paldetect===true || $mardetect===true)
@@ -108,8 +124,9 @@
 
       try{
           //read write, if you want to read only replace it with READ_ONLY
+          if($sql!=='v')
           mysqli_begin_transaction($con1, MYSQLI_TRANS_START_READ_WRITE);
-          if(($paldetect===true || $mardetect===true)&&$comdetect===true)
+          if(($paldetect===true || $mardetect===true)&&$comdetect===true && $sql!=='v')
             mysqli_begin_transaction($con2, MYSQLI_TRANS_START_READ_WRITE);
 
           if($_POST['isol']!='n'){
