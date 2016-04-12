@@ -26,29 +26,29 @@
     //Don't forget to change the table!
     session_start();
 
-    $existcon = false;
     $paldetect = false;
     $mardetect = false;
     $comdetect = false;
     //detect which user is initiating transaction    
     if ($_SESSION["mar"] == 'y'){
       $mar = mysqli_connect($_SESSION["im"],$_SESSION["um"],$_SESSION["pm"],"marinduque_info");
-      $existcon = true;
       $paldetect = true;
       $con1 = $mar;
+      $con2 = $mar;
     } else if ($_SESSION["pal"] == 'y'){
       $pal = mysqli_connect($_SESSION["ip"],$_SESSION["up"],$_SESSION["pp"],"palawan_info");
-       $existcon = true;
        $mardetect = true;
        $con1 = $pal;
+       $con2 = $pal;
     } else if ($_SESSION["com"] == 'y'){
       $com = mysqli_connect($_SESSION["ic"],$_SESSION["uc"],$_SESSION["pc"],"combined");
       $comdetect = true;
-      if($existcon===true)
+      if($paldetect===true || $mardetect===true)
         $con2 = $com;
       else {
         $existcon = false;
         $con1 = $com; 
+        $con2 = $com;
       }
     }
 
@@ -65,46 +65,46 @@
          $sql = "v";
          $sql1 = "SELECT COUNT(DISTINCT `main.id`) FROM hpq_mem
                 WHERE educind = 2 AND jobind = 2 AND regvotind = 1;";
-         if($existcon===true){
+         if(($paldetect===true || $mardetect===true)&&$comdetect===true)
             $sql2 = "SELECT COUNT(DISTINCT `main.id`) FROM hpq_mem
                 WHERE educind = 2 AND jobind = 2 AND regvotind = 1;";
-         }
+         
       } else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 1' && $_SESSION['mar']=='y' && isset($_POST['v1'])){ //cm1 - edit eduind at marinduque
         $sql = "cm1";
         $sql1 = "UPDATE hpq_mem SET educind =".$_POST['v1']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1";
-         if($existcon===true){
+         if(($paldetect===true || $mardetect===true)&&$comdetect===true)
             $sql2 = "UPDATE hpq_mem SET educind =".$_POST['v1']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1";
-         }
+         
       } else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 1' && $_SESSION['pal']=='y' && isset($_POST['v1'])){ //cp1 - edit eduind at palawan
         $sql = "cp1";
         $sql1 = "UPDATE hpq_mem SET educind = ".$_POST['v1']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
-         if($existcon===true){
+         if(($paldetect===true || $mardetect===true)&&$comdetect===true)
             $sql2 = "UPDATE hpq_mem SET educind = ".$_POST['v1']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
-         }
+         
       } else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 2' && $_SESSION['mar']=='y' && isset($_POST['v2'])){ //cm2 - edit jobind at marinduque
         $sql ="cm2";
         $sql1 = "UPDATE hpq_mem SET jobind =".$_POST['v1']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1";
-         if($existcon===true){
+         if(($paldetect===true || $mardetect===true)&&$comdetect===true)
             $sql2 = "UPDATE hpq_mem SET jobind =".$_POST['v1']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1";
-         }
+         
       }  else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 2' && $_SESSION['pal']=='y' && isset($_POST['v2'])){  //cp2 - edit jobind at palawan
         $sql ="cp2";
         $sql1 = "UPDATE hpq_mem SET jobind = ".$_POST['v1']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
-         if($existcon===true){
+         if(($paldetect===true || $mardetect===true)&&$comdetect===true)
             $sql2 = "UPDATE hpq_mem SET jobind = ".$_POST['v1']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
-         }
+         
       }  else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 3' && $_SESSION['mar']=='y' && isset($_POST['v3'])){ //cm3 - edit regvotind at marinduque
         $sql ="cm3";
         $sql1 = "UPDATE hpq_mem SET regvotind =".$_POST['v1']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1";
-         if($existcon===true){
+         if(($paldetect===true || $mardetect===true)&&$comdetect===true)
             $sql2 = "UPDATE hpq_mem SET regvotind =".$_POST['v1']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1";
-         }
+         
       }  else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 3' && $_SESSION['pal']=='y'){ //cp3 - edit regvotind at palawan
         $sql ="cp3";
         $sql1 = "UPDATE hpq_mem SET regvotind = ".$_POST['v1']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
-         if($existcon===true){
+         if(($paldetect===true || $mardetect===true)&&$comdetect===true)
             $sql2 = "UPDATE hpq_mem SET regvotind = ".$_POST['v1']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
-         }
+         
       }
 
       print_r($_SESSION);
@@ -113,25 +113,29 @@
           //read write, if you want to read only replace it with READ_ONLY
           mysqli_begin_transaction($con1, MYSQLI_TRANS_START_READ_WRITE);
 
-          $db1query = mysqli_query($con1, $isolevel);
-          if($existcon===true)
-            $db2query = mysqli_query($con2, $isolevel);
+          if($_POST['isol']!='n'){
+            $db1query = mysqli_query($con1, $isolevel);
+            if(($paldetect===true || $mardetect===true)&&$comdetect===true)
+              $db2query = mysqli_query($con2, $isolevel);
+          else ;
+          } 
 
           $db1query = mysqli_query($con1,$sql1);
-          if($existcon===true)
+          if(($paldetect===true || $mardetect===true)&&$comdetect===true)
             $db1query = mysqli_query($con2, $sql2);
+          else ;
 
           if ($sql==='v'){
             //Print the column names
             echo '<table>';
             echo '<tr>';
-            while ($field_info = mysqli_fetch_field($result)) {
+            while ($field_info = mysqli_fetch_field($db1query)) {
              echo '<td>' . $field_info->name . '</td>';
             }
             echo '</tr>';
             
             //Print the data
-            while($row = mysqli_fetch_row($result)) {
+            while($row = mysqli_fetch_row($db1query)) {
              echo "<tr>";
              foreach($row as $value) {
               echo "<td>" . $value . "</td>";
@@ -140,15 +144,18 @@
             }
             echo '</table>';
           } else{
-            mysqli_commit($db1query);
-            if($existquery===true)
+            if($db1query===true)
+              mysqli_commit($db1query);
+            else if(($paldetect===true || $mardetect===true)&&$comdetect===true &&
+                $db2query===true)
               mysqli_commit($db2query);
+            else throw new Exception("query has not executed perfectly");
           }
 
       } catch (Exception $e){
         //rollback
         mysqli_rollback($db1query);
-        if($existcon===true)
+        if(($paldetect===true || $mardetect===true)&&$comdetect===true)
           mysqli_rollback($db2query);
       }
 
