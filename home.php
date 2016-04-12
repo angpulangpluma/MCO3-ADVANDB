@@ -22,13 +22,13 @@
    session_start();
    
    //Marinduque Information
-   if(!isset($_POST['mar']) ||
-    !isset($_POST['pal']) ||
-    !isset($_POST['com'])){
-      echo'select either palawan, marinduque or combined then fill out the necessary detail.<a href="login.html">Back</a>';
-      exit;
-   }
-    else{
+   // if(!isset($_POST['mar']) ||
+   //  !isset($_POST['pal']) ||
+   //  !isset($_POST['com'])){
+   //    echo'select either palawan, marinduque or combined then fill out the necessary detail.<a href="login.html">Back</a>';
+   //    exit;
+   // }
+   //  else{
       if (isset($_POST["mar"])) $_SESSION["mar"] = "y";
    if (isset($_POST["mar"]) && $_POST["im"] != "") $_SESSION["im"] = $_POST["im"];
    else $_SESSION["mar"] = "n";
@@ -51,7 +51,7 @@
    if (isset($_POST["com"]) && $_POST["uc"] != "") $_SESSION["uc"] = $_POST["uc"];
    else $_SESSION["com"] = "n";
    if (isset($_POST["com"])) $_SESSION["pc"] = $_POST["pc"];
-    }
+    // }
 
   ?>
   <div id="content" style="border:1px solid; background:white;">
