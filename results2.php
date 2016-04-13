@@ -192,13 +192,13 @@
             echo '</table>';
           } else{
             if($db1query===true){
-              $db1query = mysqli_commit($db1query);
+              $db1query = mysqli_commit($con1);
               if($db1query===false)
                 throw new Exception("query has not committed perfectly");
             }
             else if(($paldetect===true || $mardetect===true)&&$comdetect===true &&
                 $db2query===true){
-                $db2query = mysqli_commit($db2query);
+                $db2query = mysqli_commit($con2);
                 if($db2query===false)
                   throw new Exception("query has not committed perfectly");
             }
@@ -208,9 +208,9 @@
       } catch (Exception $e){
         //rollback
         echo "No changes have been made due to loss of connection between the communicating databases";
-        mysqli_rollback($db1query);
+        mysqli_rollback($con1);
         if(($paldetect===true || $mardetect===true)&&$comdetect===true)
-          mysqli_rollback($db2query);
+          mysqli_rollback($con2);
         exit;
       }
 
