@@ -20,38 +20,40 @@
   </title>
   <?php
    session_start();
-   
-   //Marinduque Information
-   // if(!isset($_POST['mar']) ||
-   //  !isset($_POST['pal']) ||
-   //  !isset($_POST['com'])){
-   //    echo'select either palawan, marinduque or combined then fill out the necessary detail.<a href="login.html">Back</a>';
-   //    exit;
-   // }
-   //  else{
-      if (isset($_POST["mar"])) $_SESSION["mar"] = "y";
-   if (isset($_POST["mar"]) && $_POST["im"] != "") $_SESSION["im"] = $_POST["im"];
-   else $_SESSION["mar"] = "n";
-   if (isset($_POST["mar"]) && $_POST["um"] != "") $_SESSION["um"] = $_POST["um"];
-   else $_SESSION["mar"] = "n";
-   if (isset($_POST["mar"])) $_SESSION["pm"] = $_POST["pm"];
-   
-   //Palawan Information
-   if (isset($_POST["pal"])) $_SESSION["pal"] = "y";
-   if (isset($_POST["pal"]) && $_POST["ip"] != "") $_SESSION["ip"] = $_POST["ip"];
-   else $_SESSION["pal"] = "n";
-   if (isset($_POST["pal"]) && $_POST["up"] != "") $_SESSION["up"] = $_POST["up"];
-   else $_SESSION["pal"] = "n";
-   if (isset($_POST["pal"])) $_SESSION["pp"] = $_POST["pp"];
-   
-   //Combined Information
-   if (isset($_POST["com"])) $_SESSION["com"] = "y";
-   if (isset($_POST["com"]) && $_POST["ic"] != "") $_SESSION["ic"] = $_POST["ic"];
-   else $_SESSION["com"] = "n";
-   if (isset($_POST["com"]) && $_POST["uc"] != "") $_SESSION["uc"] = $_POST["uc"];
-   else $_SESSION["com"] = "n";
-   if (isset($_POST["com"])) $_SESSION["pc"] = $_POST["pc"];
-    // }
+  
+   if(!isset($_POST['mar']) &&
+    !isset($_POST['pal']) &&
+    !isset($_POST['com'])){
+      echo'select either palawan, marinduque or combined 
+        then fill out the necessary detail.
+        <a href="login.html">Back</a>';
+      exit;
+   }
+    else{
+      // Marinduque Information
+     if (isset($_POST["mar"])) $_SESSION["mar"] = "y";
+     if (isset($_POST["mar"]) && $_POST["im"] != "") $_SESSION["im"] = $_POST["im"];
+     else $_SESSION["mar"] = "n";
+     if (isset($_POST["mar"]) && $_POST["um"] != "") $_SESSION["um"] = $_POST["um"];
+     else $_SESSION["mar"] = "n";
+     if (isset($_POST["mar"])) $_SESSION["pm"] = $_POST["pm"];
+     
+     //Palawan Information
+     if (isset($_POST["pal"])) $_SESSION["pal"] = "y";
+     if (isset($_POST["pal"]) && $_POST["ip"] != "") $_SESSION["ip"] = $_POST["ip"];
+     else $_SESSION["pal"] = "n";
+     if (isset($_POST["pal"]) && $_POST["up"] != "") $_SESSION["up"] = $_POST["up"];
+     else $_SESSION["pal"] = "n";
+     if (isset($_POST["pal"])) $_SESSION["pp"] = $_POST["pp"];
+     
+     //Combined Information
+     if (isset($_POST["com"])) $_SESSION["com"] = "y";
+     if (isset($_POST["com"]) && $_POST["ic"] != "") $_SESSION["ic"] = $_POST["ic"];
+     else $_SESSION["com"] = "n";
+     if (isset($_POST["com"]) && $_POST["uc"] != "") $_SESSION["uc"] = $_POST["uc"];
+     else $_SESSION["com"] = "n";
+     if (isset($_POST["com"])) $_SESSION["pc"] = $_POST["pc"];
+    
 
   ?>
   <div id="content" style="border:1px solid; background:white;">
@@ -120,6 +122,7 @@
       </select>
     <?php
       }
+    }
     ?><br><br>
      </p>
     <!--<a style="color:gray;" href="terms.html"><i>Don't have an account? Click here!</i></a>-->
