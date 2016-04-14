@@ -155,9 +155,23 @@
       try{
           //read write, if you want to read only replace it with READ_ONLY
           if($sql!=='v'){
-            mysqli_begin_transaction($con1, MYSQLI_TRANS_START_READ_WRITE);
-            if(($paldetect===true || $mardetect===true)&&$comdetect===true && $sql!=='v')
-              mysqli_begin_transaction($con2, MYSQLI_TRANS_START_READ_WRITE);
+            if(($mardetect===true && $paldetect===false && $comdetect===false) ||
+               ($mardetect===false && $paldetect===true && $comdetect===false) ||
+               ($mardetect===false && $paldetect===false && $comdetect===true)){
+              mysqli_autocommit($con1);
+            } else if(($mardetect===true && $paldetect===false && $comdetect===true) ||
+               ($mardetect===false && $paldetect===true && $comdetect===true)){
+              mysqli_autocommit($con1);
+              mysqli_autocommit($con2);
+            } else if($mardetect===true && $paldetect===true && $comdetect===true){
+              mysqli_autocommit($con1);
+              mysqli_autocommit($con2);
+              mysqli_autocommit($con3);
+            }
+
+            // mysqli_begin_transaction($con1, MYSQLI_TRANS_START_READ_WRITE);
+            // if(($paldetect===true || $mardetect===true)&&$comdetect===true && $sql!=='v')
+              // mysqli_begin_transaction($con2, MYSQLI_TRANS_START_READ_WRITE);
           }
 
           if($_POST['isol']!='n'){
