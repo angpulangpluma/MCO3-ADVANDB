@@ -158,15 +158,15 @@
             if(($mardetect===true && $paldetect===false && $comdetect===false) ||
                ($mardetect===false && $paldetect===true && $comdetect===false) ||
                ($mardetect===false && $paldetect===false && $comdetect===true)){
-              mysqli_autocommit($con1);
+              mysqli_autocommit($con1, TRUE);
             } else if(($mardetect===true && $paldetect===false && $comdetect===true) ||
                ($mardetect===false && $paldetect===true && $comdetect===true)){
-              mysqli_autocommit($con1);
-              mysqli_autocommit($con2);
+              mysqli_autocommit($con1, TRUE);
+              mysqli_autocommit($con2, TRUE);
             } else if($mardetect===true && $paldetect===true && $comdetect===true){
-              mysqli_autocommit($con1);
-              mysqli_autocommit($con2);
-              mysqli_autocommit($con3);
+              mysqli_autocommit($con1, TRUE);
+              mysqli_autocommit($con2, TRUE);
+              mysqli_autocommit($con3, TRUE);
             }
 
             // mysqli_begin_transaction($con1, MYSQLI_TRANS_START_READ_WRITE);
@@ -217,6 +217,8 @@
                   throw new Exception("query has not committed perfectly");
             }
             else throw new Exception("query has not executed perfectly");
+            if($db1query===true && $db2query===true)
+              echo "Edit complete";
           }
 
       } catch (Exception $e){
