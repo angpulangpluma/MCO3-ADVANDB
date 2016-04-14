@@ -137,15 +137,18 @@
         }
       }else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 2' && $_SESSION['mar']=='y' && isset($_POST['v2'])){ //cm2 - edit jobind at marinduque
         $sql ="cm2";
-        $sql1 = "UPDATE hpq_mem SET jobind =".$_POST['v2']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1";
+        $sql1 = "UPDATE hpq_mem SET jobind =".$_POST['v1']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1";
          if(($paldetect===true || $mardetect===true)&&$comdetect===true)
-            $sql2 = "UPDATE hpq_mem SET jobind =".$_POST['v2']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1";
+            $sql2 = "UPDATE hpq_mem SET jobind =".$_POST['v1']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1";
          
       }  else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 2' && $_SESSION['pal']=='y' && isset($_POST['v2'])){  //cp2 - edit jobind at palawan
         $sql ="cp2";
         $sql1 = "UPDATE hpq_mem SET jobind = ".$_POST['v2']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
          if ($paldetect===false && $mardetect===true && $comdetect===true)
             $sql2 = "UPDATE hpq_mem SET jobind = ".$_POST['v2']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
+        $sql1 = "UPDATE hpq_mem SET jobind = ".$_POST['v1']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
+         if(($paldetect===true || $mardetect===true)&&$comdetect===true)
+            $sql2 = "UPDATE hpq_mem SET jobind = ".$_POST['v1']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
          
       }  else if (isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 2' && isset($_POST['v2']) && $_SESSION['com']=='y' && isset($_POST['o2'])){//edit at combined
         switch($_POST['o2']){
@@ -160,6 +163,15 @@
             $sql1 = "UPDATE hpq_mem SET jobind = ".$_POST['v2']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
              if ($paldetect===true && $mardetect===false && $comdetect===true)
                 $sql2 = "UPDATE hpq_mem SET jobind = ".$_POST['v2']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
+            $sql1 = "UPDATE hpq_mem SET jobind =".$_POST['v1']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1";
+             if(($paldetect===true || $mardetect===true)&&$comdetect===true)
+                $sql2 = "UPDATE hpq_mem SET jobind =".$_POST['v1']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1";
+          }; break;
+          case '2':{
+            $sql ="cp2";
+            $sql1 = "UPDATE hpq_mem SET jobind = ".$_POST['v1']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
+             if(($paldetect===true || $mardetect===true)&&$comdetect===true)
+                $sql2 = "UPDATE hpq_mem SET jobind = ".$_POST['v1']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
           }; break;
         }
       }else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 3' && $_SESSION['mar']=='y' && isset($_POST['v3'])){ //cm3 - edit regvotind at marinduque
@@ -173,7 +185,15 @@
         $sql1 = "UPDATE hpq_mem SET regvotind = ".$_POST['v3']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
          if ($paldetect===true && $mardetect===false && $comdetect===true)
             $sql2 = "UPDATE hpq_mem SET regvotind = ".$_POST['v3']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
+        $sql1 = "UPDATE hpq_mem SET regvotind =".$_POST['v1']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1";
+         if(($paldetect===true || $mardetect===true)&&$comdetect===true)
+            $sql2 = "UPDATE hpq_mem SET regvotind =".$_POST['v1']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1";
          
+      }  else if( isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 3' && $_SESSION['pal']=='y' && isset($_POST['v3'])){ //cp3 - edit regvotind at palawan
+        $sql ="cp3";
+        $sql1 = "UPDATE hpq_mem SET regvotind = ".$_POST['v1']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
+         if(($paldetect===true || $mardetect===true)&&$comdetect===true)
+            $sql2 = "UPDATE hpq_mem SET regvotind = ".$_POST['v1']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
       } else if (isset($_POST['edit']) && $_POST['edit'] == 'Edit User Info 3' && isset($_POST['v3']) && $_SESSION['com']=='y' && isset($_POST['o3'])){//edit at combined
         switch($_POST['o2']){
           case '1':{
@@ -187,10 +207,18 @@
             $sql1 = "UPDATE hpq_mem SET regvotind = ".$_POST['v3']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
              if ($paldetect===true && $mardetect===false && $comdetect===true)
                 $sql2 = "UPDATE hpq_mem SET regvotind = ".$_POST['v3']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
+            $sql1 = "UPDATE hpq_mem SET regvotind =".$_POST['v1']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1";
+             if(($paldetect===true || $mardetect===true)&&$comdetect===true)
+                $sql2 = "UPDATE hpq_mem SET regvotind =".$_POST['v1']." WHERE hpq_mem.`main.id`=199036 AND hpq_mem.`memno`=1";
+          }; break;
+          case '2':{
+            $sql ="cp3";
+            $sql1 = "UPDATE hpq_mem SET regvotind = ".$_POST['v1']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
+             if(($paldetect===true || $mardetect===true)&&$comdetect===true)
+                $sql2 = "UPDATE hpq_mem SET regvotind = ".$_POST['v1']." WHERE hpq_mem.`main.id`=69279 AND hpq_mem.`memno`=15";
           }; break;
         }
       }
-
       if($sql!=='v'){
         mysqli_autocommit($con1, TRUE);
         if($comdetect===true && $sql!=='v')
@@ -198,7 +226,15 @@
        //  if(($paldetect===true || $mardetect===true)&&$comdetect===true && $sql!=='v')
         // mysqli_autocommit($con2, TRUE);
       }
+      // print_r($_SESSION);
 
+      try{
+          //read write, if you want to read only replace it with READ_ONLY
+          if($sql!=='v'){
+            mysqli_begin_transaction($con1, MYSQLI_TRANS_START_READ_WRITE);
+            if(($paldetect===true || $mardetect===true)&&$comdetect===true && $sql!=='v')
+              mysqli_begin_transaction($con2, MYSQLI_TRANS_START_READ_WRITE);
+          }
           $editpal = false;
           $editmar = false;
           if($_POST['isol']!='n'){
@@ -338,6 +374,7 @@
           } else throw new Exception("query has not executed perfectly");
       
       /*else{
+          } else{
             if($db1query===true){
               $db1query = mysqli_commit($con1);
               if($db1query===false)
@@ -350,7 +387,7 @@
                   throw new Exception("query has not committed perfectly");
             }
             else throw new Exception("query has not executed perfectly");
-          }*/
+          }
 
     } catch(Exception $e){
       echo $e->getMessage();
