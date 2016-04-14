@@ -215,10 +215,9 @@
                 $db2query = mysqli_commit($con2);
                 if($db2query===false)
                   throw new Exception("query has not committed perfectly");
-            }
-            else throw new Exception("query has not executed perfectly");
-            if($db1query===true && $db2query===true)
-              echo "Edit complete";
+            }else throw new Exception("query has not executed perfectly");
+
+            echo "Edit complete";
           }
 
       } catch (Exception $e){
